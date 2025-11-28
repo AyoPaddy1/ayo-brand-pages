@@ -1,6 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { getDynamicGreeting } from '@/lib/ayo-greetings';
+import { GuidedStoryWalkthrough } from './GuidedStoryWalkthrough';
+import { getStorySections } from '@/lib/story-sections';
 
 interface AyoCoachProps {
   brandName: string;
@@ -10,8 +13,11 @@ interface AyoCoachProps {
   recentEvents: Array<{
     date: string;
     title: string;
-    type: string;
+    type: 'earnings' | 'ceo_change' | 'product_launch' | 'guidance' | 'analyst_rating';
+    impact?: 'positive' | 'negative' | 'neutral';
+    summary?: string;
   }>;
+  socialTrend?: 'very_high' | 'high' | 'moderate' | 'low';
   onAskQuestion: (question: string) => void;
 }
 
@@ -21,96 +27,107 @@ export default function AyoCoach({
   currentPrice,
   changePercent,
   recentEvents,
+  socialTrend = 'moderate',
   onAskQuestion,
 }: AyoCoachProps) {
-  const [currentSection, setCurrentSection] = useState('overview');
+  const [isTourActive, setIsTourActive] = useState(false);
 
-  // Generate context-aware opening line
-  const getOpeningLine = () => {
-    const isUp = changePercent > 0;
-    const isBigMove = Math.abs(changePercent) > 2;
+  // Get dynamic greeting based on current context
+  const greeting = getDynamicGreeting(
+    { ticker, price: currentPrice, changePercent },
+    recentEvents.map(e => ({
+      type: e.type,
+      date: e.date,
+      impact: e.impact || 'neutral',
+      summary: e.summary || e.title
+    })),
+    { trend: socialTrend }
+  );
 
-    // Check for recent major events
-    const hasRecentEarnings = recentEvents.some(
-      (e) => e.type === 'earnings' && 
-      new Date(e.date) > new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
-    );
+  // Get story sections for guided tour
+  const storySections = getStorySections(ticker);
 
-    if (hasRecentEarnings) {
-      return `${brandName} just reported earnings. Here's what it means for investors...`;
-    }
-
-    if (isBigMove && isUp) {
-      return `${brandName}'s up ${changePercent.toFixed(1)}% today. Here's what's driving it...`;
-    }
-
-    if (isBigMove && !isUp) {
-      return `${brandName}'s down ${Math.abs(changePercent).toFixed(1)}% today. Let me explain why...`;
-    }
-
-    if (isUp) {
-      return `${brandName}'s up ${changePercent.toFixed(1)}% today — recovering from a rough year. Want to know what happened, or jump to what's next?`;
-    }
-
-    return `${brandName}'s been through a lot this year. Let me walk you through the story.`;
+  const handleStartTour = () => {
+    setIsTourActive(true);
   };
 
-  // Section-specific prompts
-  const getSectionPrompt = () => {
-    switch (currentSection) {
-      case 'chart':
-        return "See those colored dots? Each one is a moment that moved the stock. Tap any to learn why.";
-      case 'calculator':
-        return "Curious what you'd have if you invested during a key event? Try the calculator.";
-      case 'forecast':
-        return "These are the upcoming events that could move the stock. Want me to explain any?";
-      default:
-        return getOpeningLine();
+  const handleSkipToForecast = () => {
+    const forecastElement = document.querySelector('#forecast');
+    if (forecastElement) {
+      forecastElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
   return (
-    <div className="sticky top-0 z-50 bg-white border-b-2 border-teal-500 shadow-lg">
-      <div className="max-w-7xl mx-auto px-6 py-4">
-        <div className="flex items-start gap-4">
-          {/* AYO Avatar */}
-          <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-teal-500 to-yellow-400 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md">
-            AYO
+    <>
+      <div className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
+          <div className="flex items-start gap-3 sm:gap-4">
+            {/* AYO Avatar */}
+            <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-teal-500 to-yellow-400 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg shadow-md">
+              AYO
+            </div>
+
+            {/* Coach Content */}
+            <div className="flex-1 min-w-0">
+              {/* Dynamic greeting */}
+              <p className="text-sm sm:text-base font-medium text-gray-900 mb-1">
+                {greeting.primary}
+              </p>
+              
+              {/* Conversational invitation */}
+              <p className="text-xs sm:text-sm text-gray-600 mb-3">
+                {greeting.secondary}
+              </p>
+            </div>
+
+            {/* Primary CTA - Desktop */}
+            <button
+              onClick={handleStartTour}
+              className="hidden sm:flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-teal-500 to-yellow-400 text-white rounded-lg font-semibold hover:shadow-lg transition-shadow flex-shrink-0"
+            >
+              <span className="text-lg">▶</span>
+              <span>Walk Me Through</span>
+            </button>
           </div>
 
-          {/* Coach Content */}
-          <div className="flex-1">
-            <div className="text-gray-900 font-medium mb-3">
-              {getSectionPrompt()}
-            </div>
+          {/* Primary CTA - Mobile (full width) */}
+          <button
+            onClick={handleStartTour}
+            className="sm:hidden w-full mt-3 flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-teal-500 to-yellow-400 text-white rounded-lg font-semibold hover:shadow-lg transition-shadow"
+          >
+            <span className="text-lg">▶</span>
+            <span>Walk Me Through</span>
+          </button>
 
-            {/* Quick Action Buttons */}
-            <div className="flex flex-wrap gap-2">
-              <button
-                onClick={() => onAskQuestion("What happened this year?")}
-                className="px-4 py-2 bg-teal-100 text-teal-700 rounded-lg hover:bg-teal-200 transition-colors text-sm font-semibold"
-              >
-                What happened?
-              </button>
-              <button
-                onClick={() => onAskQuestion("What's coming next?")}
-                className="px-4 py-2 bg-teal-100 text-teal-700 rounded-lg hover:bg-teal-200 transition-colors text-sm font-semibold"
-              >
-                What's next?
-              </button>
-              <button
-                onClick={() => {
-                  const input = prompt("What would you like to know?");
-                  if (input) onAskQuestion(input);
-                }}
-                className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm font-semibold"
-              >
-                Ask something else
-              </button>
-            </div>
+          {/* Secondary actions */}
+          <div className="mt-3 flex flex-wrap items-center gap-2 text-xs sm:text-sm">
+            <button
+              onClick={handleSkipToForecast}
+              className="text-gray-600 hover:text-teal-600 underline"
+            >
+              Skip to What's Next
+            </button>
+            <span className="text-gray-300">•</span>
+            <button
+              onClick={() => {
+                const input = prompt("What would you like to know?");
+                if (input) onAskQuestion(input);
+              }}
+              className="text-gray-600 hover:text-teal-600 underline"
+            >
+              Ask a Question
+            </button>
           </div>
         </div>
       </div>
-    </div>
+
+      {/* Guided Story Walkthrough */}
+      <GuidedStoryWalkthrough
+        sections={storySections}
+        isActive={isTourActive}
+        onClose={() => setIsTourActive(false)}
+      />
+    </>
   );
 }
