@@ -1,0 +1,715 @@
+{
+  "version": "1.0",
+  "description": "Curated social events and key events for AYO Brand Pages MVP",
+  "brands": ["NKE", "AAPL", "TSLA", "NFLX"],
+  
+  "nike": {
+    "ticker": "NKE",
+    "name": "Nike",
+    "category": "sportswear",
+    "current_hype_score": 87,
+    "confidence": 82,
+    
+    "social_events": [
+      {
+        "date": "2024-11-01",
+        "platform": "tiktok",
+        "title": "Bad Bunny Collaboration Announcement",
+        "description": "Bad Bunny x Nike collab goes viral on TikTok with 50M+ views in first 48 hours",
+        "magnitude": 95,
+        "sentiment": "positive",
+        "stock_impact": "+4.2% over 2 weeks"
+      },
+      {
+        "date": "2024-10-12",
+        "platform": "twitter",
+        "title": "Analyst Upgrades Trend",
+        "description": "Multiple analysts upgrade Nike citing inventory normalization, #NikeStock trends",
+        "magnitude": 68,
+        "sentiment": "positive",
+        "stock_impact": "+2.8% over 1 week"
+      },
+      {
+        "date": "2024-09-18",
+        "platform": "tiktok",
+        "title": "'Nike Is Dead' Trend",
+        "description": "Gen Z creators post 'Nike is dead, On is the new wave' videos, 25M+ views",
+        "magnitude": 78,
+        "sentiment": "negative",
+        "stock_impact": "-3.1% over 1 week"
+      },
+      {
+        "date": "2024-08-03",
+        "platform": "instagram",
+        "title": "Olympic Athlete Moments",
+        "description": "Nike athletes dominate Paris Olympics, viral celebration moments",
+        "magnitude": 88,
+        "sentiment": "positive",
+        "stock_impact": "+5.2% during Olympics"
+      },
+      {
+        "date": "2024-07-22",
+        "platform": "twitter",
+        "title": "CEO Strategy Interview",
+        "description": "CEO discusses DTC pivot, wholesale rebuild - mixed reception",
+        "magnitude": 52,
+        "sentiment": "neutral",
+        "stock_impact": "Flat"
+      },
+      {
+        "date": "2024-06-28",
+        "platform": "twitter",
+        "title": "Guidance Cut Reaction",
+        "description": "#NikeStock trends as investors react to earnings miss, 'Nike is over' sentiment",
+        "magnitude": 92,
+        "sentiment": "negative",
+        "stock_impact": "-20% single day"
+      },
+      {
+        "date": "2024-05-15",
+        "platform": "tiktok",
+        "title": "Kobe Sneaker Resurgence",
+        "description": "Kobe 4 Protro release drives massive TikTok engagement",
+        "magnitude": 81,
+        "sentiment": "positive",
+        "stock_impact": "+1.8% over 1 week"
+      },
+      {
+        "date": "2024-04-08",
+        "platform": "instagram",
+        "title": "Air Max Day Campaign",
+        "description": "Air Max Day 2024 campaign with Travis Scott generates buzz",
+        "magnitude": 75,
+        "sentiment": "positive",
+        "stock_impact": "+2.1% over 2 weeks"
+      },
+      {
+        "date": "2024-03-20",
+        "platform": "twitter",
+        "title": "China Recovery Concerns",
+        "description": "Analysts discuss weak China data, negative sentiment on recovery timeline",
+        "magnitude": 61,
+        "sentiment": "negative",
+        "stock_impact": "-2.4% over 1 week"
+      },
+      {
+        "date": "2024-02-04",
+        "platform": "tiktok",
+        "title": "Super Bowl Ad Viral",
+        "description": "Nike Super Bowl spot with emerging athletes gets 40M+ organic views",
+        "magnitude": 83,
+        "sentiment": "positive",
+        "stock_impact": "+3.1% over 2 weeks"
+      }
+    ],
+    
+    "key_events": [
+      {
+        "date": "2024-09-28",
+        "type": "earnings",
+        "title": "Q1 FY25 Earnings",
+        "summary": "Beat EPS $0.70 vs $0.52 expected. Revenue miss. Inventory down 5%. Guidance cautious.",
+        "stock_impact": "+6.8%"
+      },
+      {
+        "date": "2024-06-27",
+        "type": "earnings",
+        "title": "Q4 FY24 Earnings",
+        "summary": "Revenue miss, guidance cut for FY25. Management admits DTC strategy needs adjustment.",
+        "stock_impact": "-19.9%"
+      },
+      {
+        "date": "2024-03-21",
+        "type": "earnings",
+        "title": "Q3 FY24 Earnings",
+        "summary": "Mixed results. North America weak. China improving. Gross margin recovering.",
+        "stock_impact": "-5.2%"
+      },
+      {
+        "date": "2024-11-01",
+        "type": "product_launch",
+        "title": "Bad Bunny Collaboration",
+        "summary": "Major celebrity collaboration announcement. Limited edition sneakers.",
+        "stock_impact": "+4.2%"
+      },
+      {
+        "date": "2024-07-15",
+        "type": "product_launch",
+        "title": "Air Max DN Launch",
+        "summary": "New Dynamic Air cushioning technology. Mixed initial reception.",
+        "stock_impact": "Flat"
+      },
+      {
+        "date": "2024-10-14",
+        "type": "management",
+        "title": "CEO Elliott Hill Returns",
+        "summary": "Former Nike veteran returns as CEO, replacing John Donahoe.",
+        "stock_impact": "+9.3%"
+      },
+      {
+        "date": "2024-08-01",
+        "type": "competition",
+        "title": "On Running Q2 Blowout",
+        "summary": "Competitor On Running reports 30%+ growth, taking market share discussion intensifies.",
+        "stock_impact": "-2.1%"
+      }
+    ],
+    
+    "forecast_events": [
+      {
+        "date": "2024-12-01",
+        "title": "Bad Bunny Collab Launch",
+        "probability": 92,
+        "expected_impact": "+3-5% if sellout"
+      },
+      {
+        "date": "2024-12-15",
+        "title": "Holiday Sales Data",
+        "probability": 78,
+        "expected_impact": "Key metric: Digital growth >15%"
+      },
+      {
+        "date": "2024-12-20",
+        "title": "Q2 FY25 Earnings",
+        "probability": 73,
+        "expected_impact": "Price target: $125 (+11%)"
+      }
+    ]
+  },
+  
+  "apple": {
+    "ticker": "AAPL",
+    "name": "Apple",
+    "category": "bigtech",
+    "current_hype_score": 91,
+    "confidence": 88,
+    
+    "social_events": [
+      {
+        "date": "2024-09-09",
+        "platform": "twitter",
+        "title": "iPhone 16 Announcement",
+        "description": "#AppleEvent trends #1 worldwide, 500M+ impressions in 24 hours",
+        "magnitude": 98,
+        "sentiment": "positive",
+        "stock_impact": "+2.1% on day"
+      },
+      {
+        "date": "2024-09-20",
+        "platform": "tiktok",
+        "title": "iPhone 16 Unboxing Wave",
+        "description": "Launch day unboxing videos dominate TikTok, 200M+ views combined",
+        "magnitude": 94,
+        "sentiment": "positive",
+        "stock_impact": "+1.8% over week"
+      },
+      {
+        "date": "2024-06-10",
+        "platform": "twitter",
+        "title": "WWDC Apple Intelligence",
+        "description": "AI announcement gets mixed reaction - 'Apple is behind on AI' vs 'Apple does it right'",
+        "magnitude": 89,
+        "sentiment": "mixed",
+        "stock_impact": "+7.2% over 2 days"
+      },
+      {
+        "date": "2024-10-28",
+        "platform": "tiktok",
+        "title": "M4 MacBook Pro Leaks",
+        "description": "Early unboxing leaks go viral before official announcement",
+        "magnitude": 76,
+        "sentiment": "positive",
+        "stock_impact": "+1.2% pre-event"
+      },
+      {
+        "date": "2024-02-02",
+        "platform": "twitter",
+        "title": "Vision Pro Launch Reactions",
+        "description": "Polarized reactions to Vision Pro launch - 'amazing' vs 'too expensive'",
+        "magnitude": 92,
+        "sentiment": "mixed",
+        "stock_impact": "-0.8% over week"
+      },
+      {
+        "date": "2024-04-15",
+        "platform": "instagram",
+        "title": "Shot on iPhone Campaign",
+        "description": "New 'Shot on iPhone' campaign featuring emerging photographers goes viral",
+        "magnitude": 71,
+        "sentiment": "positive",
+        "stock_impact": "+0.9%"
+      },
+      {
+        "date": "2024-08-05",
+        "platform": "twitter",
+        "title": "Warren Buffett Sells Apple",
+        "description": "News that Berkshire reduced Apple stake significantly trends on FinTwit",
+        "magnitude": 85,
+        "sentiment": "negative",
+        "stock_impact": "-4.8% over 2 days"
+      },
+      {
+        "date": "2024-03-04",
+        "platform": "twitter",
+        "title": "DOJ Antitrust Lawsuit",
+        "description": "Department of Justice files major antitrust suit against Apple",
+        "magnitude": 81,
+        "sentiment": "negative",
+        "stock_impact": "-4.1% on day"
+      },
+      {
+        "date": "2024-05-02",
+        "platform": "tiktok",
+        "title": "iPad Pro M4 'Crush' Ad Backlash",
+        "description": "iPad ad showing creative tools being crushed draws creator backlash",
+        "magnitude": 73,
+        "sentiment": "negative",
+        "stock_impact": "-1.2%"
+      },
+      {
+        "date": "2024-07-15",
+        "platform": "twitter",
+        "title": "EU App Store Changes",
+        "description": "Apple opens to alternative app stores in EU, developer sentiment improves",
+        "magnitude": 65,
+        "sentiment": "mixed",
+        "stock_impact": "Flat"
+      }
+    ],
+    
+    "key_events": [
+      {
+        "date": "2024-10-31",
+        "type": "earnings",
+        "title": "Q4 FY24 Earnings",
+        "summary": "Revenue $94.9B beat. iPhone 16 demand better than expected. Services all-time high.",
+        "stock_impact": "+1.2%"
+      },
+      {
+        "date": "2024-08-01",
+        "type": "earnings",
+        "title": "Q3 FY24 Earnings",
+        "summary": "Beat expectations. China flat (better than feared). Services grew 14%.",
+        "stock_impact": "-0.5%"
+      },
+      {
+        "date": "2024-05-02",
+        "type": "earnings",
+        "title": "Q2 FY24 Earnings",
+        "summary": "Revenue slightly below. Announced $110B buyback - largest in history.",
+        "stock_impact": "+6.0%"
+      },
+      {
+        "date": "2024-09-09",
+        "type": "product_launch",
+        "title": "iPhone 16 Event",
+        "summary": "iPhone 16 with Apple Intelligence, new camera control button, A18 chip.",
+        "stock_impact": "+2.1%"
+      },
+      {
+        "date": "2024-06-10",
+        "type": "product_launch",
+        "title": "WWDC - Apple Intelligence",
+        "summary": "Announced AI strategy, Siri upgrade, ChatGPT integration.",
+        "stock_impact": "+7.2%"
+      },
+      {
+        "date": "2024-02-02",
+        "type": "product_launch",
+        "title": "Vision Pro Launch",
+        "summary": "Spatial computing headset launches at $3,499. Limited but devoted audience.",
+        "stock_impact": "-0.8%"
+      },
+      {
+        "date": "2024-03-04",
+        "type": "regulatory",
+        "title": "DOJ Antitrust Lawsuit Filed",
+        "summary": "Department of Justice sues Apple over smartphone monopoly.",
+        "stock_impact": "-4.1%"
+      },
+      {
+        "date": "2024-10-28",
+        "type": "product_launch",
+        "title": "M4 Mac Lineup",
+        "summary": "New MacBook Pro, iMac, Mac mini with M4 chips announced.",
+        "stock_impact": "+1.5%"
+      }
+    ],
+    
+    "forecast_events": [
+      {
+        "date": "2024-12-25",
+        "title": "Holiday Activation Data",
+        "probability": 88,
+        "expected_impact": "New device activations signal demand"
+      },
+      {
+        "date": "2025-01-30",
+        "title": "Q1 FY25 Earnings",
+        "probability": 82,
+        "expected_impact": "iPhone 16 full quarter, China key"
+      },
+      {
+        "date": "2025-02-15",
+        "title": "Apple Intelligence Full Rollout",
+        "probability": 75,
+        "expected_impact": "AI feature adoption metrics"
+      }
+    ]
+  },
+  
+  "tesla": {
+    "ticker": "TSLA",
+    "name": "Tesla",
+    "category": "automotive",
+    "current_hype_score": 94,
+    "confidence": 71,
+    
+    "social_events": [
+      {
+        "date": "2024-11-06",
+        "platform": "twitter",
+        "title": "Trump Election Win - Musk Connection",
+        "description": "Elon's political involvement pays off, Tesla bulls celebrate, #TSLA trends for days",
+        "magnitude": 99,
+        "sentiment": "positive",
+        "stock_impact": "+29% over 1 week"
+      },
+      {
+        "date": "2024-10-10",
+        "platform": "twitter",
+        "title": "Robotaxi 'We, Robot' Event",
+        "description": "Cybercab reveal - mixed reactions on timeline, 'vaporware' vs 'revolutionary' debate",
+        "magnitude": 91,
+        "sentiment": "mixed",
+        "stock_impact": "-8.8% day after"
+      },
+      {
+        "date": "2024-07-23",
+        "platform": "tiktok",
+        "title": "Q2 Earnings Reaction",
+        "description": "Margin concerns spark bear TikTok content, 'Tesla is dying' videos go viral",
+        "magnitude": 78,
+        "sentiment": "negative",
+        "stock_impact": "-12% day after earnings"
+      },
+      {
+        "date": "2024-04-05",
+        "platform": "twitter",
+        "title": "Cybertruck Delivery Ramp",
+        "description": "First customer Cybertrucks delivered, polarized reactions on design continue",
+        "magnitude": 85,
+        "sentiment": "mixed",
+        "stock_impact": "+3.2%"
+      },
+      {
+        "date": "2024-08-08",
+        "platform": "twitter",
+        "title": "Musk-Trump Spaces Interview",
+        "description": "Technical issues become meme, but content on Tesla/EVs well received by bulls",
+        "magnitude": 82,
+        "sentiment": "mixed",
+        "stock_impact": "+1.5%"
+      },
+      {
+        "date": "2024-05-20",
+        "platform": "tiktok",
+        "title": "Model Y Best-Selling Car",
+        "description": "Model Y named world's best-selling car, pro-Tesla content surge",
+        "magnitude": 79,
+        "sentiment": "positive",
+        "stock_impact": "+2.8%"
+      },
+      {
+        "date": "2024-03-15",
+        "platform": "twitter",
+        "title": "China Price War Coverage",
+        "description": "BYD price cuts, Tesla forced to respond, bear narrative intensifies",
+        "magnitude": 72,
+        "sentiment": "negative",
+        "stock_impact": "-5.1%"
+      },
+      {
+        "date": "2024-09-05",
+        "platform": "instagram",
+        "title": "FSD v12 Viral Videos",
+        "description": "Full Self-Driving v12 videos showing impressive drives go viral",
+        "magnitude": 76,
+        "sentiment": "positive",
+        "stock_impact": "+3.4%"
+      },
+      {
+        "date": "2024-06-13",
+        "platform": "twitter",
+        "title": "Musk Comp Package Vote",
+        "description": "Shareholder vote restores Musk's $56B pay package, bulls celebrate",
+        "magnitude": 88,
+        "sentiment": "positive",
+        "stock_impact": "+2.9%"
+      },
+      {
+        "date": "2024-02-28",
+        "platform": "twitter",
+        "title": "Germany Factory Arson",
+        "description": "Activist attack on Berlin factory disrupts production, condemned widely",
+        "magnitude": 68,
+        "sentiment": "negative",
+        "stock_impact": "-2.1%"
+      }
+    ],
+    
+    "key_events": [
+      {
+        "date": "2024-10-23",
+        "type": "earnings",
+        "title": "Q3 2024 Earnings",
+        "summary": "Beat on EPS. Deliveries up 6% YoY. Automotive margin 17.1%. Energy storage record.",
+        "stock_impact": "+21.9%"
+      },
+      {
+        "date": "2024-07-23",
+        "type": "earnings",
+        "title": "Q2 2024 Earnings",
+        "summary": "Missed on revenue. Auto margin compressed to 14.4%. FSD revenue deferred.",
+        "stock_impact": "-12.3%"
+      },
+      {
+        "date": "2024-04-23",
+        "type": "earnings",
+        "title": "Q1 2024 Earnings",
+        "summary": "Revenue down 9% YoY (first decline). Accelerated affordable vehicle timeline.",
+        "stock_impact": "+12.1%"
+      },
+      {
+        "date": "2024-10-10",
+        "type": "product_launch",
+        "title": "'We, Robot' Robotaxi Event",
+        "summary": "Unveiled Cybercab robotaxi ($30K), Robovan, Optimus updates. No near-term catalysts.",
+        "stock_impact": "-8.8%"
+      },
+      {
+        "date": "2024-11-14",
+        "type": "product_launch",
+        "title": "FSD v13 Announcement",
+        "summary": "Next major FSD version announced with significant improvements.",
+        "stock_impact": "+5.6%"
+      },
+      {
+        "date": "2024-06-13",
+        "type": "governance",
+        "title": "Musk Pay Package Approved",
+        "summary": "Shareholders vote to restore $56B compensation package.",
+        "stock_impact": "+2.9%"
+      },
+      {
+        "date": "2024-11-06",
+        "type": "political",
+        "title": "Trump Election Victory",
+        "summary": "Musk-backed candidate wins. Expectations of favorable EV policy, regulatory relief.",
+        "stock_impact": "+29% over week"
+      }
+    ],
+    
+    "forecast_events": [
+      {
+        "date": "2025-01-02",
+        "title": "Q4 Delivery Numbers",
+        "probability": 85,
+        "expected_impact": "Target: 515K+ deliveries"
+      },
+      {
+        "date": "2025-01-29",
+        "title": "Q4 2024 Earnings",
+        "probability": 79,
+        "expected_impact": "Margin recovery key metric"
+      },
+      {
+        "date": "2025-03-01",
+        "title": "Affordable Model Reveal",
+        "probability": 65,
+        "expected_impact": "Sub-$30K Tesla announcement?"
+      }
+    ]
+  },
+  
+  "netflix": {
+    "ticker": "NFLX",
+    "name": "Netflix",
+    "category": "streaming",
+    "current_hype_score": 82,
+    "confidence": 79,
+    
+    "social_events": [
+      {
+        "date": "2024-11-17",
+        "platform": "twitter",
+        "title": "Jake Paul vs Tyson Fight",
+        "description": "Netflix live event crashes, memes everywhere, but 60M+ concurrent viewers",
+        "magnitude": 96,
+        "sentiment": "mixed",
+        "stock_impact": "+0.8% (streaming worked eventually)"
+      },
+      {
+        "date": "2024-09-19",
+        "platform": "tiktok",
+        "title": "Squid Game 2 Trailer",
+        "description": "Most anticipated show trailer drops, 100M+ views across platforms",
+        "magnitude": 94,
+        "sentiment": "positive",
+        "stock_impact": "+3.2% over week"
+      },
+      {
+        "date": "2024-08-01",
+        "platform": "twitter",
+        "title": "NFL Christmas Games Announced",
+        "description": "Netflix sports expansion, live sports strategy validation",
+        "magnitude": 78,
+        "sentiment": "positive",
+        "stock_impact": "+2.1%"
+      },
+      {
+        "date": "2024-05-16",
+        "platform": "tiktok",
+        "title": "Bridgerton S3 Dominance",
+        "description": "Show dominates TikTok for weeks, massive engagement",
+        "magnitude": 88,
+        "sentiment": "positive",
+        "stock_impact": "+1.8%"
+      },
+      {
+        "date": "2024-03-08",
+        "platform": "twitter",
+        "title": "Password Crackdown Praised",
+        "description": "Analysts praise subscriber growth from password sharing crackdown",
+        "magnitude": 72,
+        "sentiment": "positive",
+        "stock_impact": "+2.4%"
+      },
+      {
+        "date": "2024-07-03",
+        "platform": "instagram",
+        "title": "Cobra Kai Final Season",
+        "description": "Fan favorite ending drives nostalgia engagement",
+        "magnitude": 68,
+        "sentiment": "positive",
+        "stock_impact": "+0.9%"
+      },
+      {
+        "date": "2024-04-18",
+        "platform": "twitter",
+        "title": "Q1 Sub Guidance Removal",
+        "description": "Netflix stops reporting subscriber numbers, bear concern on transparency",
+        "magnitude": 81,
+        "sentiment": "negative",
+        "stock_impact": "-9.1% day after earnings"
+      },
+      {
+        "date": "2024-10-08",
+        "platform": "tiktok",
+        "title": "Monsters Dahmer 2 Launch",
+        "description": "True crime content continues to perform, strong engagement",
+        "magnitude": 75,
+        "sentiment": "positive",
+        "stock_impact": "+1.2%"
+      },
+      {
+        "date": "2024-06-20",
+        "platform": "twitter",
+        "title": "WWE Raw Deal Announced",
+        "description": "$5B WWE deal announced, sports/entertainment pivot validated",
+        "magnitude": 82,
+        "sentiment": "positive",
+        "stock_impact": "+3.8%"
+      },
+      {
+        "date": "2024-02-22",
+        "platform": "twitter",
+        "title": "Ad Tier Hits 40M Users",
+        "description": "Advertising milestone exceeded expectations, revenue diversification",
+        "magnitude": 71,
+        "sentiment": "positive",
+        "stock_impact": "+2.1%"
+      }
+    ],
+    
+    "key_events": [
+      {
+        "date": "2024-10-17",
+        "type": "earnings",
+        "title": "Q3 2024 Earnings",
+        "summary": "Added 5M subs (beat). Revenue $9.8B. Operating margin 30%. Ad tier momentum.",
+        "stock_impact": "+11.1%"
+      },
+      {
+        "date": "2024-07-18",
+        "type": "earnings",
+        "title": "Q2 2024 Earnings",
+        "summary": "8M net adds. Strong margins. Upfront ad sales strong. WWE coming 2025.",
+        "stock_impact": "+1.5%"
+      },
+      {
+        "date": "2024-04-18",
+        "type": "earnings",
+        "title": "Q1 2024 Earnings",
+        "summary": "9.3M net adds beat. Announced stopping quarterly sub guidance. Mixed reaction.",
+        "stock_impact": "-9.1%"
+      },
+      {
+        "date": "2024-11-17",
+        "type": "content",
+        "title": "Jake Paul vs Mike Tyson Live",
+        "summary": "First major live boxing event. 60M+ viewers despite technical issues.",
+        "stock_impact": "+0.8%"
+      },
+      {
+        "date": "2024-12-26",
+        "type": "content",
+        "title": "Squid Game Season 2",
+        "summary": "Most anticipated show launches. Expected to break viewership records.",
+        "stock_impact": "TBD"
+      },
+      {
+        "date": "2024-06-20",
+        "type": "business",
+        "title": "WWE Raw Deal ($5B)",
+        "summary": "10-year WWE Raw rights deal starting January 2025.",
+        "stock_impact": "+3.8%"
+      },
+      {
+        "date": "2024-05-15",
+        "type": "content",
+        "title": "Bridgerton Season 3",
+        "summary": "Biggest returning show delivers strong viewership.",
+        "stock_impact": "+1.8%"
+      },
+      {
+        "date": "2024-12-25",
+        "type": "content",
+        "title": "NFL Christmas Day Games",
+        "summary": "Two NFL games streamed live on Netflix.",
+        "stock_impact": "TBD"
+      }
+    ],
+    
+    "forecast_events": [
+      {
+        "date": "2024-12-25",
+        "title": "NFL Christmas Games",
+        "probability": 90,
+        "expected_impact": "Live sports validation"
+      },
+      {
+        "date": "2024-12-26",
+        "title": "Squid Game 2 Launch",
+        "probability": 95,
+        "expected_impact": "Major engagement driver"
+      },
+      {
+        "date": "2025-01-21",
+        "title": "Q4 2024 Earnings",
+        "probability": 76,
+        "expected_impact": "Ad revenue growth, WWE preview"
+      }
+    ]
+  }
+}
