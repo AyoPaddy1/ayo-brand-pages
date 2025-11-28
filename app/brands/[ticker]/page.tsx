@@ -197,10 +197,13 @@ export default function BrandPage() {
         ticker={ticker}
         currentPrice={brand.current_price}
         changePercent={brand.change_percent}
-        recentEvents={[...socialEvents, ...keyEvents].map(e => ({
+        recentEvents={[...keyEvents, ...socialEvents].map(e => ({
           date: e.date,
           title: e.title,
-          type: 'event_type' in e ? e.event_type : 'social'
+          type: ('event_type' in e ? e.event_type : 'product_launch') as 'earnings' | 'ceo_change' | 'product_launch' | 'guidance' | 'analyst_rating',
+          impact: e.stock_impact === 'positive' ? 'positive' as const : 
+                  e.stock_impact === 'negative' ? 'negative' as const : 'neutral' as const,
+          summary: 'summary' in e ? e.summary : e.description
         }))}
         onAskQuestion={handleAskQuestion}
       />
