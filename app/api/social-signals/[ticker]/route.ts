@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getSocialSignals } from '@/lib/social-signals';
+import { getSocialSignals } from '@/lib/social-signals-v2';
 
 export async function GET(
   request: NextRequest,
