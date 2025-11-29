@@ -1,9 +1,11 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import AyoCoach from '@/components/AyoCoach';
 import SocialSignalsPanel from '@/components/social-signals-panel';
 import { StockChartWithSocial } from '@/components/StockChartWithSocial';
 import { getAyoForecastCommentary } from '@/lib/ayo-forecast-commentary';
+import { generateSyntheticSocialHistory, mergeSocialWithPriceData } from '@/lib/synthetic-social-history';
 import { useParams } from 'next/navigation';
 import {
   LineChart,
