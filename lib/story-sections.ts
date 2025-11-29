@@ -28,11 +28,11 @@ export const NIKE_STORY_SECTIONS: StorySection[] = [
   },
   {
     id: 4,
-    title: "The Interesting Part",
-    text: "Here's the interesting part though. Look at social sentiment. TikTok mentions are up 40% this month. Gen Z is still buying. That's a leading indicator Wall Street often misses.",
+    title: "The Fandom Signal",
+    text: "Here's what Wall Street is missing: Google searches for Nike are up 77% this week. r/sneakers has 4,400+ engagements. Gen Z is still buying. This is the disconnect — fandom is strong, but the stock hasn't caught up yet.",
     scrollTo: "#social-signals",
     highlight: ".social-signals-section",
-    duration: 5000
+    duration: 6000
   },
   {
     id: 5,
@@ -71,11 +71,11 @@ export const APPLE_STORY_SECTIONS: StorySection[] = [
   },
   {
     id: 4,
-    title: "Social Sentiment",
-    text: "Social buzz around Apple products remains strong, especially around new product launches. The Vision Pro got mixed reviews, but people are still talking about it.",
+    title: "The Fan Base Stays Loyal",
+    text: "Apple searches are up 13% this week. r/apple has 28,000+ engagements — the community is still hyped. Even when iPhone sales slow in China, the core fan base isn't going anywhere. That's the moat.",
     scrollTo: "#social-signals",
     highlight: ".social-signals-section",
-    duration: 5000
+    duration: 6000
   },
   {
     id: 5,
@@ -114,11 +114,11 @@ export const TESLA_STORY_SECTIONS: StorySection[] = [
   },
   {
     id: 4,
-    title: "Social Sentiment",
-    text: "Tesla still dominates social media conversations about EVs. Musk's Twitter activity (now X) keeps the brand in the news — for better or worse.",
+    title: "The Elon Effect",
+    text: "r/teslamotors has 20,000+ engagements this week. Elon's tweets still move the stock — literally. When he posts about Cybertruck or FSD, searches spike. It's chaotic, but it keeps Tesla in the conversation.",
     scrollTo: "#social-signals",
     highlight: ".social-signals-section",
-    duration: 5000
+    duration: 6000
   },
   {
     id: 5,
@@ -157,11 +157,11 @@ export const NETFLIX_STORY_SECTIONS: StorySection[] = [
   },
   {
     id: 4,
-    title: "Social Buzz",
-    text: "Netflix still dominates the conversation when it comes to must-watch shows. Hits like Wednesday and Squid Game keep people engaged and talking on social media.",
+    title: "The Content Machine",
+    text: "Netflix searches are up 53% this week. r/netflix has 5,000+ engagements. When a show goes viral on TikTok, it drives subscriptions. That's the flywheel — content creates buzz, buzz drives growth.",
     scrollTo: "#social-signals",
     highlight: ".social-signals-section",
-    duration: 5000
+    duration: 6000
   },
   {
     id: 5,

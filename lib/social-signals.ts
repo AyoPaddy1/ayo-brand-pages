@@ -5,6 +5,7 @@
 
 import { callDataApi } from "@/server/_core/dataApi";
 import { getGoogleTrends, type GoogleTrendsData } from './google-trends';
+import { getTikTokSignal, type TikTokSignal } from './tiktok-signals';
 
 // Cache duration: 1 hour for social signals
 const CACHE_DURATION = 60 * 60 * 1000;
@@ -41,14 +42,6 @@ interface BrandSubredditSignal {
 }
 
 type GoogleTrendsSignal = GoogleTrendsData;
-
-interface TikTokSignal {
-  ticker: string;
-  brand: string;
-  videoCount: number;
-  hashtag: string;
-  lastUpdated: number;
-}
 
 interface SocialSignals {
   wallStreetBets?: WallStreetBetsSignal;
@@ -231,16 +224,18 @@ export async function getBrandSubredditSignal(ticker: string): Promise<BrandSubr
  * Get all social signals for a ticker
  */
 export async function getSocialSignals(ticker: string): Promise<SocialSignals> {
-  const [wallStreetBets, brandSubreddit, googleTrends] = await Promise.all([
+  const [wallStreetBets, brandSubreddit, googleTrends, tiktok] = await Promise.all([
     getWallStreetBetsSignal(ticker),
     getBrandSubredditSignal(ticker),
-    getGoogleTrends(ticker)
+    getGoogleTrends(ticker),
+    getTikTokSignal(ticker)
   ]);
 
   return {
     wallStreetBets,
     brandSubreddit,
-    googleTrends
+    googleTrends,
+    tiktok
   };
 }
 

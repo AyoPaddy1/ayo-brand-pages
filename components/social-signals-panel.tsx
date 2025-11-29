@@ -28,6 +28,17 @@ interface SocialSignalsData {
     weekOverWeekChange: number;
     trend: 'up' | 'down' | 'flat';
   };
+  tiktok?: {
+    ticker: string;
+    brand: string;
+    videoCount: number;
+    hashtag: string;
+    topVideos?: Array<{
+      id: string;
+      description: string;
+      author: string;
+    }>;
+  };
 }
 
 interface SocialSignalsPanelProps {
@@ -184,6 +195,39 @@ export default function SocialSignalsPanel({ ticker }: SocialSignalsPanelProps) 
           </div>
         )}
 
+        {/* TikTok */}
+        {signals.tiktok && signals.tiktok.videoCount > 0 && (
+          <div className="bg-zinc-800/50 rounded-lg p-4 border border-zinc-700">
+            <div className="flex items-start justify-between mb-2">
+              <div>
+                <h4 className="text-sm font-semibold text-zinc-300">TikTok</h4>
+                <p className="text-xs text-zinc-500">Viral moments & Gen Z buzz</p>
+              </div>
+              <span className="text-2xl">🎵</span>
+            </div>
+            <div className="flex items-baseline gap-2">
+              <span className="text-3xl font-bold text-white">
+                {signals.tiktok.videoCount}
+              </span>
+              <span className="text-sm text-zinc-400">videos</span>
+            </div>
+            <div className="mt-2 text-xs text-zinc-500">
+              {signals.tiktok.hashtag} trending
+            </div>
+            {signals.tiktok.topVideos && signals.tiktok.topVideos.length > 0 && (
+              <div className="mt-3 pt-3 border-t border-zinc-700">
+                <p className="text-xs text-zinc-400 mb-1">Top video:</p>
+                <p className="text-sm text-zinc-300 line-clamp-2">
+                  {signals.tiktok.topVideos[0].description || 'No description'}
+                </p>
+                <p className="text-xs text-zinc-500 mt-1">
+                  by @{signals.tiktok.topVideos[0].author}
+                </p>
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Brand Subreddit */}
         {signals.brandSubreddit && signals.brandSubreddit.subreddit && (
           <div className="bg-zinc-800/50 rounded-lg p-4 border border-zinc-700">
@@ -209,7 +253,7 @@ export default function SocialSignalsPanel({ ticker }: SocialSignalsPanelProps) 
 
       <div className="mt-6 pt-4 border-t border-zinc-800">
         <p className="text-xs text-zinc-500">
-          Social signals update hourly. Data from Reddit, Google Trends.
+          Social signals update hourly. Data from Reddit, Google Trends, TikTok.
         </p>
       </div>
     </div>
