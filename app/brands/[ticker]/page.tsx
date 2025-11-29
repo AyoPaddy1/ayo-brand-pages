@@ -1,6 +1,7 @@
 'use client';
 
 import AyoCoach from '@/components/AyoCoach';
+import SocialSignalsPanel from '@/components/social-signals-panel';
 
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
@@ -494,6 +495,11 @@ export default function BrandPage() {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Social Signals Panel - NEW */}
+        <div className="mb-8">
+          <SocialSignalsPanel ticker={ticker} />
         </div>
 
         {/* Events Timeline */}
