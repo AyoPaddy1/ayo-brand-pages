@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { InvestmentCalculatorTooltip } from './InvestmentCalculatorTooltip';
 import {
   LineChart,
   Line,
@@ -44,16 +45,23 @@ interface StockChartWithSocialProps {
     event_type: string;
     title: string;
   }>;
+  currentPrice: number;
 }
 
 export function StockChartWithSocial({
   data,
   brandName,
   socialEvents,
-  keyEvents
+  keyEvents,
+  currentPrice
 }: StockChartWithSocialProps) {
   const [showGoogleTrends, setShowGoogleTrends] = useState(false);
   const [showRedditMentions, setShowRedditMentions] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState<{
+    name: string;
+    date: string;
+    price: number;
+  } | null>(null);
 
   return (
     <div>
@@ -186,6 +194,12 @@ export function StockChartWithSocial({
                 }
                 stroke="white"
                 strokeWidth={2}
+                cursor="pointer"
+                onClick={() => setSelectedEvent({
+                  name: event.title,
+                  date: event.date,
+                  price: dataPoint.price
+                })}
               />
             );
           })}
@@ -205,11 +219,32 @@ export function StockChartWithSocial({
                 fill="#ef4444"
                 stroke="white"
                 strokeWidth={2}
+                cursor="pointer"
+                onClick={() => setSelectedEvent({
+                  name: event.title,
+                  date: event.date,
+                  price: dataPoint.price
+                })}
               />
             );
           })}
         </ComposedChart>
       </ResponsiveContainer>
+
+      {/* Investment Calculator Tooltip */}
+      {selectedEvent && (
+        <div className="relative">
+          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full mb-4">
+            <InvestmentCalculatorTooltip
+              eventName={selectedEvent.name}
+              eventDate={format(parseISO(selectedEvent.date), 'MMM dd, yyyy')}
+              priceAtEvent={selectedEvent.price}
+              currentPrice={currentPrice}
+              onClose={() => setSelectedEvent(null)}
+            />
+          </div>
+        </div>
+      )}
 
       {/* Legend */}
       <div className="mt-6 flex flex-wrap gap-4 justify-center">

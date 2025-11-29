@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import AyoCoach from '@/components/AyoCoach';
 import SocialSignalsPanel from '@/components/social-signals-panel';
 import { StockChartWithSocial } from '@/components/StockChartWithSocial';
+import { InvestmentCTA } from '@/components/InvestmentCTA';
+import { WalkMeThroughBanner } from '@/components/WalkMeThroughBanner';
 import { getAyoForecastCommentary } from '@/lib/ayo-forecast-commentary';
 import { generateSyntheticSocialHistory, mergeSocialWithPriceData } from '@/lib/synthetic-social-history';
 import { useParams } from 'next/navigation';
@@ -175,8 +177,18 @@ export default function BrandPage() {
     }
   };
 
+  const handleStartWalkthrough = () => {
+    // Scroll to AYO Coach section
+    const ayoSection = document.querySelector('.ayo-coach-section');
+    if (ayoSection) {
+      ayoSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* Walk Me Through Banner - Shows on first visit */}
+      <WalkMeThroughBanner onStartWalkthrough={handleStartWalkthrough} />
       {/* Header */}
       <div className="bg-gradient-to-r from-teal-600 to-emerald-600 text-white p-8">
         <div className="max-w-7xl mx-auto">
@@ -315,6 +327,7 @@ export default function BrandPage() {
             brandName={brand.name}
             socialEvents={socialEvents}
             keyEvents={keyEvents}
+            currentPrice={brand.current_price}
           />
         </div>
 
@@ -455,6 +468,9 @@ export default function BrandPage() {
             })}
           </div>
         </div>
+
+        {/* Investment CTA - NEW */}
+        <InvestmentCTA brandName={brand?.name || ticker} ticker={ticker} />
 
         {/* Social Signals Panel - NEW */}
         <div className="mb-8">
