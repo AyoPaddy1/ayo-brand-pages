@@ -46,7 +46,7 @@ export async function GET(
         }))
       : await getMockHistorical(upperTicker, period1, period2);
 
-    // Transform data
+    // Transform data and reverse to show oldest to newest (chronological order)
     const prices = result.map((item) => ({
       date: format(item.date, 'yyyy-MM-dd'),
       open: item.open,
@@ -54,7 +54,7 @@ export async function GET(
       low: item.low,
       close: item.close,
       volume: item.volume,
-    }));
+    })).reverse(); // Reverse to show oldest first (left) to newest (right)
 
     return NextResponse.json({
       success: true,

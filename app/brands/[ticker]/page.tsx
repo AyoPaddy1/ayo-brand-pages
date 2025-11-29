@@ -78,6 +78,7 @@ export default function BrandPage() {
   const [ayoQuestion, setAyoQuestion] = useState('');
   const [ayoResponse, setAyoResponse] = useState<any>(null);
   const [askingAyo, setAskingAyo] = useState(false);
+  const [socialSignals, setSocialSignals] = useState<any>(null);
 
   useEffect(() => {
     if (!ticker) return;
@@ -86,8 +87,9 @@ export default function BrandPage() {
       fetch(`/api/brands/${ticker}`).then((r) => r.json()),
       fetch(`/api/brands/${ticker}/prices?period=${selectedPeriod}`).then((r) => r.json()),
       fetch(`/api/brands/${ticker}/events`).then((r) => r.json()),
+      fetch(`/api/social-signals/${ticker}`).then((r) => r.json()),
     ])
-      .then(([brandRes, pricesRes, eventsRes]) => {
+      .then(([brandRes, pricesRes, eventsRes, socialRes]) => {
         if (brandRes.success) setBrand(brandRes.data);
         if (pricesRes.success) setPrices(pricesRes.data.prices);
         if (eventsRes.success) {
@@ -95,6 +97,7 @@ export default function BrandPage() {
           setKeyEvents(eventsRes.data.key_events);
           setForecastEvents(eventsRes.data.forecast_events);
         }
+        if (socialRes) setSocialSignals(socialRes);
         setLoading(false);
       })
       .catch((err) => {
@@ -111,14 +114,34 @@ export default function BrandPage() {
     );
   }
 
-  // Prepare chart data with events
-  const chartData = prices.map((price) => {
+  // Generate synthetic social history if we have current social signals
+  const socialHistory = socialSignals && socialSignals.googleTrends
+    ? generateSyntheticSocialHistory(
+        ticker,
+        socialSignals.googleTrends.currentInterest,
+        socialSignals.wallStreetBets?.mentions || 0,
+        prices.length
+      )
+    : [];
+
+  // Merge social history with price data
+  const pricesWithSocial = socialHistory.length > 0
+    ? mergeSocialWithPriceData(
+        prices.map(p => ({ date: p.date, price: p.close })),
+        socialHistory
+      )
+    : prices.map(p => ({ date: p.date, price: p.close }));
+
+  // Prepare chart data with events and social signals
+  const chartData = pricesWithSocial.map((price) => {
     const socialEvent = socialEvents.find((e) => e.date === price.date);
     const keyEvent = keyEvents.find((e) => e.date === price.date);
 
     return {
       date: price.date,
-      price: price.close,
+      price: price.price,
+      googleTrends: price.googleTrends,
+      redditMentions: price.redditMentions,
       socialMagnitude: socialEvent ? socialEvent.magnitude : null,
       socialPlatform: socialEvent ? socialEvent.platform : null,
       socialTitle: socialEvent ? socialEvent.title : null,
@@ -285,98 +308,12 @@ export default function BrandPage() {
             </div>
           </div>
 
-          <ResponsiveContainer width="100%" height={500}>
-            <LineChart data={chartData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-              <XAxis
-                dataKey="date"
-                tickFormatter={(date) => format(parseISO(date), 'MMM yy')}
-                stroke="#999"
-              />
-              <YAxis stroke="#999" />
-              <Tooltip
-                contentStyle={{
-                  backgroundColor: 'white',
-                  border: '1px solid #e0e0e0',
-                  borderRadius: '8px',
-                  padding: '12px',
-                }}
-                labelFormatter={(date) => format(parseISO(date as string), 'MMM dd, yyyy')}
-                formatter={(value: any) => [`$${value.toFixed(2)}`, 'Price']}
-              />
-              <Legend />
-              <Line
-                type="monotone"
-                dataKey="price"
-                stroke="#14b8a6"
-                strokeWidth={3}
-                dot={false}
-                name={`${brand.name} Stock`}
-              />
-
-              {/* Social event markers */}
-              {socialEvents.map((event) => {
-                const dataPoint = chartData.find((d) => d.date === event.date);
-                if (!dataPoint) return null;
-
-                return (
-                  <ReferenceDot
-                    key={`social-${event.id}`}
-                    x={event.date}
-                    y={dataPoint.price}
-                    r={8}
-                    fill={
-                      event.platform === 'tiktok'
-                        ? '#a855f7'
-                        : event.platform === 'twitter'
-                        ? '#3b82f6'
-                        : '#ec4899'
-                    }
-                    stroke="white"
-                    strokeWidth={2}
-                  />
-                );
-              })}
-
-              {/* Key event markers */}
-              {keyEvents.map((event) => {
-                const dataPoint = chartData.find((d) => d.date === event.date);
-                if (!dataPoint) return null;
-
-                return (
-                  <ReferenceDot
-                    key={`key-${event.id}`}
-                    x={event.date}
-                    y={dataPoint.price}
-                    r={10}
-                    fill="#ef4444"
-                    stroke="white"
-                    strokeWidth={2}
-                  />
-                );
-              })}
-            </LineChart>
-          </ResponsiveContainer>
-
-          {/* Legend */}
-          <div className="mt-6 flex flex-wrap gap-4 justify-center">
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-4 rounded-full bg-purple-500" />
-              <span className="text-sm text-gray-600">TikTok Event</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-4 rounded-full bg-blue-500" />
-              <span className="text-sm text-gray-600">Twitter Event</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-4 rounded-full bg-pink-500" />
-              <span className="text-sm text-gray-600">Instagram Event</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-4 rounded-full bg-red-500" />
-              <span className="text-sm text-gray-600">Key Event</span>
-            </div>
-          </div>
+          <StockChartWithSocial
+            data={chartData}
+            brandName={brand.name}
+            socialEvents={socialEvents}
+            keyEvents={keyEvents}
+          />
         </div>
 
         {/* Investment Calculator */}

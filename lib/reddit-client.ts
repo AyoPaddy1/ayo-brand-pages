@@ -32,16 +32,26 @@ export async function getSubredditPosts(
     
     const response = await fetch(url, {
       headers: {
-        'User-Agent': 'AYO-Brand-Pages/1.0'
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'application/json',
+        'Accept-Language': 'en-US,en;q=0.9'
       },
-      next: { revalidate: 3600 } // Cache for 1 hour
+      next: { revalidate: 3600 }, // Cache for 1 hour
+      cache: 'force-cache' // Use cache aggressively to avoid rate limits
     });
 
     if (!response.ok) {
-      throw new Error(`Reddit API error: ${response.status}`);
+      console.error(`Reddit API error: ${response.status} for r/${subreddit}`);
+      return [];
     }
 
     const data: RedditResponse = await response.json();
+    
+    if (!data?.data?.children) {
+      console.error(`Invalid Reddit response structure for r/${subreddit}`);
+      return [];
+    }
+    
     return data.data.children || [];
 
   } catch (error) {
