@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getDynamicGreeting } from '@/lib/ayo-greetings';
+import { getDynamicGreetingV2 } from '@/lib/ayo-greetings-v2';
 import { GuidedStoryWalkthrough } from './GuidedStoryWalkthrough';
 import { getStorySections } from '@/lib/story-sections';
 
@@ -31,18 +32,39 @@ export default function AyoCoach({
   onAskQuestion,
 }: AyoCoachProps) {
   const [isTourActive, setIsTourActive] = useState(false);
+  const [socialSignals, setSocialSignals] = useState<any>(null);
+
+  // Fetch social signals
+  useEffect(() => {
+    fetch(`/api/social-signals/${ticker}`)
+      .then(r => r.json())
+      .then(data => setSocialSignals(data))
+      .catch(err => console.error('Failed to load social signals:', err));
+  }, [ticker]);
 
   // Get dynamic greeting based on current context
-  const greeting = getDynamicGreeting(
-    { ticker, price: currentPrice, changePercent },
-    recentEvents.map(e => ({
-      type: e.type,
-      date: e.date,
-      impact: e.impact || 'neutral',
-      summary: e.summary || e.title
-    })),
-    { trend: socialTrend }
-  );
+  // Use V2 if social signals are available, otherwise fallback to V1
+  const greeting = socialSignals
+    ? getDynamicGreetingV2(
+        { ticker, price: currentPrice, changePercent },
+        recentEvents.map(e => ({
+          type: e.type,
+          date: e.date,
+          impact: e.impact || 'neutral',
+          summary: e.summary || e.title
+        })),
+        socialSignals
+      )
+    : getDynamicGreeting(
+        { ticker, price: currentPrice, changePercent },
+        recentEvents.map(e => ({
+          type: e.type,
+          date: e.date,
+          impact: e.impact || 'neutral',
+          summary: e.summary || e.title
+        })),
+        { trend: socialTrend }
+      );
 
   // Get story sections for guided tour
   const storySections = getStorySections(ticker);
