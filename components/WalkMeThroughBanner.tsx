@@ -40,7 +40,7 @@ export function WalkMeThroughBanner({ onStartWalkthrough }: WalkMeThroughBannerP
 
   return (
     <div
-      className={`fixed top-20 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ${
+      className={`fixed top-32 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ${
         isAnimating ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
       }`}
     >
@@ -65,7 +65,7 @@ export function WalkMeThroughBanner({ onStartWalkthrough }: WalkMeThroughBannerP
                 First time here?
               </h3>
               <p className="text-gray-300 text-sm mb-4">
-                Let AYO walk you through how social buzz connects to stock movements. Takes 2 minutes.
+                Let AYO walk you through the investment story behind this brand. Takes 2 minutes.
               </p>
 
               <div className="flex gap-3">
