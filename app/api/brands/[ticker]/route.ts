@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
 import { getMockQuote } from '@/lib/mock-stock-data';
+import { getStockQuote } from '@/lib/twelve-data';
 
 export async function GET(
   request: Request,
@@ -24,8 +25,16 @@ export async function GET(
       );
     }
 
-    // Get current stock quote
-    const quote = await getMockQuote(upperTicker);
+    // Get current stock quote from Twelve Data (fallback to mock if API fails)
+    const realQuote = await getStockQuote(upperTicker);
+    const quote = realQuote ? {
+      regularMarketPrice: realQuote.price,
+      regularMarketChangePercent: realQuote.percent_change,
+      marketCap: 0, // Not provided by basic quote endpoint
+      fiftyTwoWeekHigh: 0, // Would need separate API call
+      fiftyTwoWeekLow: 0, // Would need separate API call
+      regularMarketVolume: 0, // Not in basic quote
+    } : await getMockQuote(upperTicker);
 
     return NextResponse.json({
       success: true,

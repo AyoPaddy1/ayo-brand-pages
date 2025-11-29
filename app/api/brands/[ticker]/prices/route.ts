@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getMockHistorical } from '@/lib/mock-stock-data';
+import { getTimeSeries } from '@/lib/twelve-data';
 import { subYears, format } from 'date-fns';
 
 export async function GET(
@@ -29,8 +30,21 @@ export async function GET(
       period1 = subYears(new Date(), yearsBack);
     }
 
-    // Fetch historical data
-    const result = await getMockHistorical(upperTicker, period1, period2);
+    // Fetch historical data from Twelve Data (fallback to mock if API fails)
+    const yearsBack = periodParam === '1y' ? 1 : periodParam === '3y' ? 3 : periodParam === '5y' ? 5 : 2;
+    const outputsize = yearsBack * 252; // Approximate trading days per year
+    
+    const realData = await getTimeSeries(upperTicker, '1day', outputsize);
+    const result = realData.length > 0 
+      ? realData.map(item => ({
+          date: new Date(item.datetime),
+          open: parseFloat(item.open),
+          high: parseFloat(item.high),
+          low: parseFloat(item.low),
+          close: parseFloat(item.close),
+          volume: parseInt(item.volume)
+        }))
+      : await getMockHistorical(upperTicker, period1, period2);
 
     // Transform data
     const prices = result.map((item) => ({
