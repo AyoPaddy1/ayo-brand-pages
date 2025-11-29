@@ -6,6 +6,9 @@ import SocialSignalsPanel from '@/components/social-signals-panel';
 import { StockChartWithSocial } from '@/components/StockChartWithSocial';
 import { InvestmentCTA } from '@/components/InvestmentCTA';
 import { WalkMeThroughBanner } from '@/components/WalkMeThroughBanner';
+import { BrandNewsSection } from '@/components/BrandNewsSection';
+import { EarningsChart } from '@/components/EarningsChart';
+import { FansAlsoWatch } from '@/components/FansAlsoWatch';
 import { getAyoForecastCommentary } from '@/lib/ayo-forecast-commentary';
 import { generateSyntheticSocialHistory, mergeSocialWithPriceData } from '@/lib/synthetic-social-history';
 import { useParams } from 'next/navigation';
@@ -194,7 +197,9 @@ export default function BrandPage() {
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h1 className="text-5xl font-bold mb-2">{brand.name}</h1>
+              <h1 className="text-5xl font-bold mb-2">
+                {brand.name} <span className="text-3xl text-white/60">({ticker})</span>
+              </h1>
               <p className="text-xl text-white/90">
                 {brand.name}'s been through a lot this year. Here's the story.
               </p>
@@ -475,6 +480,21 @@ export default function BrandPage() {
         {/* Social Signals Panel - NEW */}
         <div className="mb-8">
           <SocialSignalsPanel ticker={ticker} />
+        </div>
+
+        {/* Brand News Section - NEW */}
+        <div className="mb-8">
+          <BrandNewsSection ticker={ticker} brandName={brand.name} />
+        </div>
+
+        {/* Earnings Chart - NEW */}
+        <div className="mb-8">
+          <EarningsChart ticker={ticker} brandName={brand.name} />
+        </div>
+
+        {/* Fans Also Watch - NEW */}
+        <div className="mb-8">
+          <FansAlsoWatch ticker={ticker} brandName={brand.name} />
         </div>
 
         {/* Events Timeline */}
