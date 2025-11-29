@@ -2,8 +2,8 @@
 
 import AyoCoach from '@/components/AyoCoach';
 import SocialSignalsPanel from '@/components/social-signals-panel';
-
-import { useEffect, useState } from 'react';
+import { StockChartWithSocial } from '@/components/StockChartWithSocial';
+import { getAyoForecastCommentary } from '@/lib/ayo-forecast-commentary';
 import { useParams } from 'next/navigation';
 import {
   LineChart,
@@ -415,22 +415,42 @@ export default function BrandPage() {
         <div id="forecast" className="forecast-section bg-white rounded-2xl shadow-lg p-6 mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">🔮 Next 30 Days Forecast</h2>
           <div className="grid grid-cols-3 gap-6">
-            {forecastEvents.map((event) => (
-              <div key={event.id} className="bg-gradient-to-br from-teal-50 to-emerald-50 rounded-xl p-6">
-                <div className="text-sm text-gray-600 mb-2">
-                  {format(parseISO(event.date), 'MMM dd')}
+            {forecastEvents.map((event) => {
+              const commentary = getAyoForecastCommentary(ticker, event);
+              return (
+                <div key={event.id} className="bg-gradient-to-br from-teal-50 to-emerald-50 rounded-xl p-6 hover:shadow-lg transition-shadow">
+                  <div className="text-sm text-gray-600 mb-2">
+                    {format(parseISO(event.date), 'MMM dd')}
+                  </div>
+                  <div className="text-lg font-bold text-gray-900 mb-3">
+                    {event.title}
+                  </div>
+                  <div className="text-3xl font-bold text-teal-600 mb-3">
+                    {event.probability}%
+                  </div>
+                  
+                  {/* AYO Commentary */}
+                  <div className="bg-white/60 rounded-lg p-3 mb-3 border border-teal-100">
+                    <div className="text-xs font-semibold text-teal-700 mb-1">💬 AYO's Take</div>
+                    <div className="text-sm text-gray-700 leading-relaxed">
+                      {commentary.context}
+                    </div>
+                    <div className="text-sm text-gray-900 font-medium mt-2">
+                      {commentary.question}
+                    </div>
+                  </div>
+                  
+                  <div className="text-xs text-gray-600 font-medium">
+                    {event.expected_impact}
+                  </div>
+                  
+                  {/* Stakes */}
+                  <div className="text-xs text-teal-700 mt-2 italic">
+                    {commentary.stakes}
+                  </div>
                 </div>
-                <div className="text-lg font-bold text-gray-900 mb-2">
-                  {event.title}
-                </div>
-                <div className="text-3xl font-bold text-teal-600 mb-2">
-                  {event.probability}%
-                </div>
-                <div className="text-sm text-gray-600">
-                  {event.expected_impact}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
